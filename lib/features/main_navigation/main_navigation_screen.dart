@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/constants/gaps.dart';
+import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -38,27 +40,37 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_selectedIndex],
-      bottomNavigationBar: NavigationBar(
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        destinations: [
-          const NavigationDestination(
-            icon: FaIcon(FontAwesomeIcons.house, color: Colors.teal),
-            label: "Home",
-          ),
-          const NavigationDestination(
-              icon:
-                  FaIcon(FontAwesomeIcons.magnifyingGlass, color: Colors.amber),
-              label: "Search"),
-          const NavigationDestination(
-              icon: FaIcon(FontAwesomeIcons.magnifyingGlass), label: "Search"),
-          const NavigationDestination(
-              icon: FaIcon(FontAwesomeIcons.magnifyingGlass), label: "Search"),
-          const NavigationDestination(
-              icon: FaIcon(FontAwesomeIcons.magnifyingGlass), label: "Search"),
-        ],
-        onDestinationSelected: _onTap,
-        selectedIndex: _selectedIndex,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            NavTab(
+              text: "Home",
+              isSelected: _selectedIndex == 0,
+              icon: FontAwesomeIcons.house,
+              onTap: () => _onTap(0),
+            ),
+            NavTab(
+              text: "Discover",
+              isSelected: _selectedIndex == 1,
+              icon: FontAwesomeIcons.magnifyingGlass,
+              onTap: () => _onTap(1),
+            ),
+            NavTab(
+              text: "Inbox",
+              isSelected: _selectedIndex == 3,
+              icon: FontAwesomeIcons.message,
+              onTap: () => _onTap(3),
+            ),
+            NavTab(
+              text: "Profiles",
+              isSelected: _selectedIndex == 4,
+              icon: FontAwesomeIcons.user,
+              onTap: () => _onTap(4),
+            ),
+          ],
+        ),
       ),
     );
   }
