@@ -39,42 +39,26 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _selectedIndex,
-        onTap: _onTap,
-        selectedItemColor: Theme.of(context).primaryColor,
-        items: [
-          const BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.house),
-              label: "Home",
-              tooltip: "What are you?",
-              backgroundColor: Colors.amber),
-          const BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            label: "Search",
-            tooltip: "Search for people",
-            backgroundColor: Colors.blue,
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        destinations: [
+          const NavigationDestination(
+            icon: FaIcon(FontAwesomeIcons.house, color: Colors.teal),
+            label: "Home",
           ),
-          const BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            label: "Search",
-            tooltip: "Search for people",
-            backgroundColor: Colors.pink,
-          ),
-          const BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            label: "Search",
-            tooltip: "Search for people",
-            backgroundColor: Colors.yellow,
-          ),
-          const BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            label: "Search",
-            tooltip: "Search for people",
-            backgroundColor: Colors.teal,
-          )
+          const NavigationDestination(
+              icon:
+                  FaIcon(FontAwesomeIcons.magnifyingGlass, color: Colors.amber),
+              label: "Search"),
+          const NavigationDestination(
+              icon: FaIcon(FontAwesomeIcons.magnifyingGlass), label: "Search"),
+          const NavigationDestination(
+              icon: FaIcon(FontAwesomeIcons.magnifyingGlass), label: "Search"),
+          const NavigationDestination(
+              icon: FaIcon(FontAwesomeIcons.magnifyingGlass), label: "Search"),
         ],
+        onDestinationSelected: _onTap,
+        selectedIndex: _selectedIndex,
       ),
     );
   }
